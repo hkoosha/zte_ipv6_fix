@@ -1,50 +1,54 @@
 ## Important Notice:
 
 I do not take responsibility for anything, including but not limited to:
-Violating operator laws, bricking your modem, your local laws, any harm
-or loss caused by using the provided script. Read the GPL license provided
-with the script.
+Violating operator laws, bricking your modem, your local laws, any harm or loss
+caused by using the provided script. Read the GPL license provided with the
+script.
 
+### TL;DR How to fix the modem? (run the script)
 
-## The original issue with the modem, TL;DR
+Run the provided script on a linux or Mac (not tested) connected to the modem
+and it will de-suck the modem. The script is automation of some telnet
+commands.<br>
+It requires that you install `expect` and `telnet` on your machine.
+
+You wont have connection drops, very high ping time, connection hanging and...
+anymore.
+
+### What's wrong with it anyway?
 
 ZTE modem operates terribly in IPv6 mode (aka, it sucks beyong your
 imagination).  Even if you disable IPv6 mode in connecting devices, it still
 sucks. You can disable IPv6 on the modem using the provided script.
 
 Disabling IPv6 on the modem, ping time (of an (almost) near servers) is reduced
-from 120 - 170ms to 50 - 55ms. Connection are not dropped anymore. And many many
-other issues are simply resolved.
+from 120 - 170ms to 50 - 55ms. Connection are not dropped anymore. And many
+many other issues are simply resolved.
 
-The script is automation of some telnet commands. It requires that you install
-`expect` and `telnet` on your machine.
-
-
-## TODO
-
-Totally kill and destroy and abolish the tr069 service running on the modem.
-:middle_finger
 
 ## ======== Further Details ==========
+
+TODO: Totally kill and destroy and abolish the tr069 service running on the modem.
+:middle_finger
 
 My modem is originally locked by the operator (MTN-Irancell). I don't know if
 there is a problem with the operator handling IPv6 or the modem itself. In
 anycase, it works just fine using IPv4 only.
 
-The printed version on back of my modem is Irancell-MF810, there are no signs of
-ZTE anywhere. Looking at the source code of admin page, you can see ZTE
+The printed version on back of my modem is Irancell-MF810, there are no signs
+of ZTE anywhere. Looking at the source code of admin page, you can see ZTE
 copyright phrase commented out. A text file `/etc/version` says the modem
 version (ZTE/zx297520) a little birdy said it is same as MF903 (I googled
 actually).
 
-### Is it possible to unlock the modem?
+#### Is it possible to unlock the modem?
 
-Probably, flashing an unlocked firmware should do it. I don't know if the binary
-firmware is available anywhere but there is a link to ZTE-Opensource, and it
-contains source code for compiling firmware of some of their modems. Today I
-looked again, there was no such thing anymore. At least for MF903.
+Probably, flashing an unlocked firmware should do it. I don't know if the
+binary firmware is available anywhere but there is a link to ZTE-Opensource,
+and it contains source code for compiling firmware of some of their modems.
+Today I looked again, there was no such thing anymore. At least for MF903.
 
-## ========= Technical Details Or, Let Me In ==========
+### ========= Technical Details Or, Let Me In ==========
 
 credentials: root:*anything* OR admin:admin<br>
 command: `telnet 192.168.1.1 4719 -ladmin`
@@ -53,27 +57,27 @@ command: `telnet 192.168.1.1 4719 -ladmin`
 login.<br>
 If telnet fails, use nc (netcat) but it's not as good connecting to telnetd.
 
-### You may find these things interesting:
+## You may find these things interesting:
 
-- It runs [uclinux](http://www.uclinux.org/), The Embedded Linux/Microcontroller
-  Project.
+- It runs [uclinux](http://www.uclinux.org/), The Embedded
+  Linux/Microcontroller Project.
 
-- Bonus tip: the easiest way to transfer files from modem is to copy the, to web
-  server directory and download it as a regular file from port 80.
+- Bonus tip: the easiest way to transfer files from modem is to copy the, to
+  web server directory and download it as a regular file from port 80.
 
-- Fun fact: you can control LED's on the device, go to `/sys/class/leds`
-  and echo 0 or 1 to 'bat_red/brightness' or any other led.
+- Fun fact: you can control LED's on the device, go to `/sys/class/leds` and
+  echo 0 or 1 to 'bat_red/brightness' or any other led.
 
 - Does it come with GPIO? yes. But I don't know what do they control and where
   is the pinout. Also there are i2c, many uart and... Find them in `/sys/class`
 
 - A goahead server is running on port 80, it's a single binary, HTTP POST/GET
-  is handled by some other binary file, the binary was in `/mnt/jffs2` I guess. Maybe
-  `/etc_ro/cgi-bin/upload.cgi`. I don't know if it is possible to find out
+  is handled by some other binary file, the binary was in `/mnt/jffs2` I guess.
+  Maybe `/etc_ro/cgi-bin/upload.cgi`. I don't know if it is possible to find out
   how to unlock the modem using this file.
 
-- You will find many scripts in `/mnt/jffs2/scripts/zte_get_LanEnable.sh`
-  I have added a few of my own. The directory is writable.
+- You will find many scripts in `/mnt/jffs2/scripts/zte_get_LanEnable.sh` I
+  have added a few of my own. The directory is writable.
 
 - A program called `nv` configures the modem. It's a binary.
 ```
@@ -89,8 +93,9 @@ mount -t jffs2 mtd:yaffs /mnt/yaffs
 ...
 #start adbd
 adbd &
+
+#### Dont know what adbd is, it's not on the $PATH (and this is not an android).
 ```
-Dont know what adbd is, it's not on the $PATH (and this is not an android).
 
 - `netstat -tulpn`
 ```
@@ -122,7 +127,7 @@ devpts on /dev/pts type devpts (rw,relatime,mode=600)
 mtd:fotaupdate on /cache type jffs2 (rw,relatime)
 ```
 
-- `ps aux | grep -v '\['` interesting processes only:
+- `ps aux | grep -v '\['` # interesting processes only:
 ```
     1 root       0:01 /sbin/init
   921 root       0:00 udhcpd -f /mnt/jffs2/etc/udhcpd.conf
@@ -140,7 +145,7 @@ mtd:fotaupdate on /cache type jffs2 (rw,relatime)
 24694 root       0:00 /bin/webs -x
 ```
 
-- Busybox (`busybox1 --help`)
+- `busybox1 --help`
 ```
 BusyBox v1.21.0-uc0 (2017-03-06 21:33:53 CST) multi-call binary.
 BusyBox is copyrighted by many authors between 1998-2012.
@@ -150,7 +155,7 @@ REST OF OUTPUT OMMITED
 - Model, as found by google search:
   - MF903
 
-- ZTE model (as advertised by /etc/version):
+- `cat /etc/version` # ZTE model (as advertised by /etc/version)
   - ZTE/zx297520 Version 4.0 --  Mon Mar 6 21:40:11 CST 2017
 
 - Resources (you wont find much):
