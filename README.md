@@ -17,7 +17,7 @@ anymore.
 
 ### What's wrong with it anyway?
 
-ZTE modem operates terribly in IPv6 mode (aka, it sucks beyong your
+ZTE modem operates terribly in IPv6 mode (aka, it sucks beyond your
 imagination).  Even if you disable IPv6 mode in connecting devices, it still
 sucks. You can disable IPv6 on the modem using the provided script.
 
