@@ -13,7 +13,7 @@ imagination).  Even if you disable IPv6 mode in connecting devices, it still
 sucks. You can disable IPv6 on the modem using the provided script.
 
 Disabling IPv6 on the modem, ping time (of an (almost) near servers) is reduced
-from 120~170ms to 50~55ms. Connection are not dropped anymore. And many many
+from 120 - 170ms to 50 - 55ms. Connection are not dropped anymore. And many many
 other issues are simply resolved.
 
 The script is automation of some telnet commands. It requires that you install
@@ -22,14 +22,10 @@ The script is automation of some telnet commands. It requires that you install
 
 ## TODO
 
-1. Create an script *on the modem itself*, and perhaps run it periodlically.
-some scripts that are writable and are ran on boot, may be modified to achieve
-this
-
-2. Totally kill and destroy and abolish the tr069 service running on the modem.
+Totally kill and destroy and abolish the tr069 service running on the modem.
 :middle_finger
 
-## ============================ Further Details ================================
+## ======== Further Details ==========
 
 My modem is originally locked by the operator (MTN-Irancell). I don't know if
 there is a problem with the operator handling IPv6 or the modem itself. In
@@ -48,7 +44,7 @@ firmware is available anywhere but there is a link to ZTE-Opensource, and it
 contains source code for compiling firmware of some of their modems. Today I
 looked again, there was no such thing anymore. At least for MF903.
 
-## ===================== Technical Details Or, Let Me In =======================
+## ========= Technical Details Or, Let Me In ==========
 
 credentials: root:*anything* OR admin:admin<br>
 command: `telnet 192.168.1.1 4719 -ladmin`
@@ -62,7 +58,8 @@ If telnet fails, use nc (netcat) but it's not as good connecting to telnetd.
 - It runs [uclinux](http://www.uclinux.org/), The Embedded Linux/Microcontroller
   Project.
 
-- Bonus tip: the easiest way to transfer files from modem 
+- Bonus tip: the easiest way to transfer files from modem is to copy the, to web
+  server directory and download it as a regular file from port 80.
 
 - Fun fact: you can control LED's on the device, go to `/sys/class/leds`
   and echo 0 or 1 to 'bat_red/brightness' or any other led.
@@ -71,7 +68,7 @@ If telnet fails, use nc (netcat) but it's not as good connecting to telnetd.
   is the pinout. Also there are i2c, many uart and... Find them in `/sys/class`
 
 - A goahead server is running on port 80, it's a single binary, HTTP POST/GET
-  is handled by some binary, the binary was in `/mnt/jffs2` I guess. Maybe
+  is handled by some other binary file, the binary was in `/mnt/jffs2` I guess. Maybe
   `/etc_ro/cgi-bin/upload.cgi`. I don't know if it is possible to find out
   how to unlock the modem using this file.
 
