@@ -1,5 +1,11 @@
 #!/usr/bin/bash
 
+function intro() {
+    echo "Script to disable IPv6 on ZTE modem and de-suck it".
+    echo "Author: Koosha Hosseiny <info@koosha.cc"
+    echo ""
+}
+
 function error() {
     echo ""
     echo "ERROR:: $1 is not present in the PATH"
@@ -10,6 +16,8 @@ function error() {
     echo "PATH=$PATH"
     exit 1
 }
+
+intro
 
 which telnetx 2>/dev/null || error 'telnet'
 which expectx 2>/dev/null || error 'expect'

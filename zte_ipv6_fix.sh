@@ -1,5 +1,7 @@
 #!/usr/bin/env expect
 
+puts "Script to disable IPv6 on ZTE modem and de-suck it\nAuthor: Koosha Hosseiny <info@koosha.cc>\n"
+
 set timeout 15
 set script /mnt/jffs2/scripts/disable_ipv6.sh
 set scripts /mnt/jffs2/scripts
