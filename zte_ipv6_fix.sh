@@ -19,7 +19,7 @@ send "echo '#! /bin/sh' > $script \n"
 send "echo 'echo disabling IPv6 on all interfaces' >> $script \n"
 send "echo 'echo 1 > /proc/sys/net/ipv6/conf/all/disable_ipv6' >> $script \n"
 send "chmod +x $script \n"
-send "echo 'IPv6 disabled on all interfaces' >> $script \n"
+send "echo 'echo IPv6 disabled on all interfaces' >> $script \n"
 
 send "echo $script >> $scripts/wan_ipv6.sh \n"
 send "echo $script >> $scripts/wan_ipv6_config.sh \n"
